@@ -6,3 +6,5 @@ While Quartz crystals can do that, they have soem practical limitations like int
 #  PLL Components
 
 ![pllc](/pll_compo.JPG "pllc")
+
+As seen in the block diagram, PLL  has a Phase Frequency Detector(PFD), Charge Pump(CP), Low Pass FIlter(LPF), VCO, and Frequency Divider(FD)
