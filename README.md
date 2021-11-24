@@ -104,17 +104,17 @@ Noise is specified to be less than 10nS, and jitter rms > 20nS <br>
 
 ###  FD Simulation
 
+As can be seen in teh waveform below, out frequency(red) is half the input frequency(blue)
+
 ![1](/fd_sim_wave.JPG "2")
 
 
-As can be seen, out frequency(red) is half the input frequency(blue)
-
 ###  CP simulation
-
-![1](/cp_wave_1.JPG "2")
 
 When v2=v3=0, output  is charged with leakage current and we see this small(uV) voltage output building up. <br>
 Initial condition on this o/p was 0v. <br>
+
+![1](/cp_wave_1.JPG "2")
 
 When v2 is a pulse input with 200nS period, we get following plot of output for 50uS, output voltage approaching 900mV  <br>
 
@@ -135,7 +135,7 @@ As shown I the waveforms, as the phase difference of 2 inputs are fixed, 1 signa
 
 ### Simulation of Complete PLL
 
-Shown below is teh block diagram for the PLL system.  <br>
+Shown below is the block diagram for the PLL system.  <br>
 Here, ref clock, clk_ref  is 80nS which is 12.5MHz and f/b clock is 1/8  <br>
 
 ![1](/pll_draw.JPG "2")
@@ -144,10 +144,66 @@ Below is the whole view of transient simulation waveforms.
 
 ![1](/pll_wave_1.JPG "2")
 
-Here is the initial part of transient sim, At the bottom, we see that the blue vco output frequency is much lower than red clk_ref
+Next is the initial part of transient sim, At the bottom, we see that the blue vco output frequency is much lower than red clk_ref
 
 ![1](/pll_wave_2.JPG "2")
 
+Below, as we can see in the later part of transient sim, the bottom red waveform, clk_ref matches the vco output, blue waveform 
+ with some offset
+
+![1](/pll_wave_3.JPG "2")
+
+Shown below, at the top,  yellow is 'down' signal and red right below that is 'up' signal
+
+![1](/pll_wave_4.JPG "2")
+
+## Lab12 Troubleshooting
+
+Check connectivity and other issues in the netlist. <br>
+For VCO, check if the required frequency value lies within the VCO frequency range.  <br>
+If PFD cannot detect smallest phase diff then, it can result in phase noise, and/or instability. <br>
+How fast is CP input charging or discharging. <br>
+Loop filter can be adjusted. <br> 
+
+## Lab14 Layout
+
+### FD
+
+![1](/lay_fd.JPG "2")
+
+### PFD Layout
+
+In the layout, The left green part is all 6 NMOS, and at the bottom are the PMOS and the rightmost part is buffers added for swing.
+
+![1](/lay_pfd.JPG "2")
+
+![1](/pfd_new.JPG "2")
+
+### CP Layout
+
+Here, the long top red poly part is top current PMOs, below green are current NMOS at the bottom of the circuit diagram. And UP and DOWN inverters are at bottom left.
+The big size of devices is to allow enough current for charging/discharging the output
+
+![1](/lay_cp.JPG "2")
+
+### VCO Layout
+
+Middle are the inverters with 1 strong inverter at the end for charging current requirement.
+At the top are the PMOS and bottom are the NMOS for  current control 
+
+![1](/lay_vco.JPG "2")
+
+
+## Lab 15 Parasitic extraction
+
+In the PFD layout, 'select all' with pressing I, then do 'extract all" to extract parasitics into a .ext file.  <br>
+To convert .ext to spice file, do,   ext2spice rthresh 0 cthresh 0   <br>
+Rthresh cthresh values are the once that tell the tool to ignore R and C values lower than that.  <br>
+The generated spice file below shows extracted parasitic caps   <br>
+
+![1](/ext_pll.JPG "2")
+
+Correct teh scale factor
 
 
 
