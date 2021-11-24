@@ -60,7 +60,7 @@ Output of a D f/f is half the frequency of its input clk. Thus a D f/f with an i
 
 # VCO terminologies
 
-Some important VCO terminologies are as below.
+Some important VCO terminologies are as below. <br>
 ![1](/vco_terms.JPG "2")
 
 # Tools used in the project
