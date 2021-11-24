@@ -55,7 +55,7 @@ Output of a D f/f is half the frequency of its input clk. Thus a D f/f with an i
 
 ![1](/fd_block.JPG "2")
 
-![1](/diff_fd.JPG "2")
+![1](/dff_fd.JPG "2")
 
 
 # VCO terminologies
