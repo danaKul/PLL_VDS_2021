@@ -83,5 +83,72 @@ Some important VCO terminologies are as below. <br>
 PDK used is Open Source Google-Skywater 130nm
 
 
+## PLL Specifications
+
+He,re apart from the PVT corners mentioned, 
+Simulatiosn will be done for VCO mode where,  a control voltage will be directly provided to VCO and thus PLL will be used as VCO. <br>
+Another mode is PLL mode where whole whole PLL will be simulated. <br>
+Frequency range shows the range of frequencies for which PLL must work.  <br>
+Noise is specified to be less than 10nS, and jitter rms > 20nS <br>
+
+![1](/pll_spec.JPG "2")
+
+
+### PFD implentation to reduce Dead Zone
+
+![1](/pfd_new.JPG "2")
+
+### Replacement CP circuit to reduce leakage
+
+![1](/cp_new.JPG "2")
+
+###  FD Simulation
+
+![1](/fd_sim_wave.JPG "2")
+
+
+As can be seen, out frequency(red) is half the input frequency(blue)
+
+###  CP simulation
+
+![1](/cp_wave_1.JPG "2")
+
+When v2=v3=0, output  is charged with leakage current and we see this small(uV) voltage output building up. <br>
+Initial condition on this o/p was 0v. <br>
+
+When v2 is a pulse input with 200nS period, we get following plot of output for 50uS, output voltage approaching 900mV  <br>
+
+![1](/cp_wave_2.JPG "2")
+
+### VCO Simulation
+
+Here, control voltage is v2 in spice netlist file. For 0.6V control voltage, we get the o/p of the VCO as shown below.
+
+![1](/vco_sim_wave_1.JPG "2")
+
+### PFD  Simulation
+
+As shown I the waveforms, as the phase difference of 2 inputs are fixed, 1 signal(up) is always 0 while signal down  shows the phase difference between the 2 input signals.
+
+![1](/pfd_sim_wave_1.JPG "2")
+
+
+### Simulation of Complete PLL
+
+Shown below is teh block diagram for the PLL system.  <br>
+Here, ref clock, clk_ref  is 80nS which is 12.5MHz and f/b clock is 1/8  <br>
+
+![1](/pll_draw.JPG "2")
+
+Below is the whole view of transient simulation waveforms.
+
+![1](/pll_wave_1.JPG "2")
+
+Here is the initial part of transient sim, At the bottom, we see that the blue vco output frequency is much lower than red clk_ref
+
+![1](/pll_wave_2.JPG "2")
+
+
+
 
 
