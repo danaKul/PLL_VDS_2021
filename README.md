@@ -200,11 +200,50 @@ In the PFD layout, 'select all' with pressing I, then do 'extract all" to extrac
 To convert .ext to spice file, do,   ext2spice rthresh 0 cthresh 0   <br>
 Rthresh cthresh values are the once that tell the tool to ignore R and C values lower than that.  <br>
 The generated spice file below shows extracted parasitic caps   <br>
+Correct teh scale factor
 
 ![1](/ext_pll.JPG "2")
 
-Correct teh scale factor
+## Lab 16 Post Layout Sim for PFD
+
+Below PFD waveform shows Yellow 'up' signal for 10nS delay between the 2 clk signals
+
+![1](/pfd_postlay_1.JPG "2")
+
+Below waveform shows phase difference of 1nS is also captured by PFD
+
+![1](/pfd_postlay.JPG "2")
+
+## Lab17  Steps to combine layout
+
+Connect CP to VCO
+
+![1](/conn_cp_vco.JPG "2")
+
+## Complete PLL layout
+
+Open the .mag file in magic and then choose file > write gds
+
+![1](/lay_pll.JPG "2")
 
 
+## Lab18 Tapeout
+
+To send the design to tapeout, we need to prepare it.  <br>
+It needs a few components like, I/O pads, Peripherals, memory, testing mechanism and others depending on the design
 
 
+Caravel is a SOC with following specifications,
+
+![1](/caravel.JPG "2")
+
+For tapeout, user just has to put the design in the caravel SOC gds.  <br>
+For that, Get the caravel gds with clone command, extract the gds file  
+user_analog_project_wrapper_empty.gds.gz
+
+![1](/ext_gds.JPG "2")
+
+
+Open it with Magic and tehn place teh PLL cell inside
+
+![1](/open_caravel.JPG "2")
